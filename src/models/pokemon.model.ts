@@ -1,9 +1,15 @@
 import {Entity, model, property} from '@loopback/repository';
-import {Evolution, EvolutionRequirements, Range} from '.';
-import {AttackConfiguration} from './attack-configuration.model';
+import {AttackConfiguration} from './attack-configuration';
+import {Evolution} from './evolution';
+import {EvolutionRequirements} from './evolution-requirements';
 import {PokemonType} from './pokemon-type';
+import {Range} from './range';
 
-@model()
+@model({
+  settings: {
+    strict: 'filter'
+  }
+})
 export class Pokemon extends Entity {
   @property({
     type: 'string',
@@ -99,13 +105,25 @@ export class Pokemon extends Entity {
     type: 'object',
     required: false,
   })
-  'Previous evolution(s)': Evolution;
+  'Previous evolution(s)'?: Evolution;
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  'Common Capture Area'?: string
+
+  @property({
+    type: 'string',
+    required: false,
+  })
+  'Pokémon Class'?: string
 
   constructor(data?: Partial<Pokemon>) {
     super(data);
   }
 }
 
-export interface PokemonRelations {}
+export interface PokemonRelations { }
 
 export type PokemonWithRelations = Pokemon & PokemonRelations;

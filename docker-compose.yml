@@ -7,22 +7,33 @@ services:
       file: service.yml
       service: pokedex
     depends_on:
-      - mongo-seed
+      - pokedex-migration
+      - mongo-dev
+      - mongo-test
     command: yarn start:watch
     volumes:
       - ./:/home/node/app:cached
     ports:
       - 4000:3000
 
-  mongo:
-    image: mongo:4.0
+  pokedex-migration:
+    build:
+      context: .
+    extends:
+      file: service.yml
+      service: pokedex
+    depends_on:
+      - mongo-dev
+    command: yarn run migrate
+    volumes:
+      - ./:/home/node/app:cached
+
+  mongo-dev:
+    image: mongo:4.2
     volumes:
       - ./initial-data:/initial-data:cached
-    command: mongod --smallfiles
-    ports:
-      - 27017:27017
+    command: mongod
 
-  mongo-seed:
-    build: ./mongo-seed
-    depends_on:
-      - mongo
+  mongo-test:
+    image: mongo:4.2
+    command: mongod

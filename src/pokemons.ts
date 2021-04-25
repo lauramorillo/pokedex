@@ -1,4 +1,4 @@
-[
+export const POKEMON_LIST = [
   {
     "id": "001",
     "name": "Bulbasaur",
