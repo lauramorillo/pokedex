@@ -4,6 +4,7 @@ import {
   givenHttpServerConfig,
 } from '@loopback/testlab';
 import {PokedexApplication} from '../..';
+import {testPokemon} from '../fixtures/datasources/testpokemon.datasource';
 
 export async function setupApplication(): Promise<AppWithClient> {
   const restConfig = givenHttpServerConfig({
@@ -15,6 +16,7 @@ export async function setupApplication(): Promise<AppWithClient> {
   });
 
   await app.boot();
+  app.dataSource(testPokemon);
   await app.start();
 
   const client = createRestAppClient(app);

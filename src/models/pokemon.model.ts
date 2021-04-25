@@ -7,8 +7,8 @@ import {Range} from './range';
 
 @model({
   settings: {
-    strict: 'filter'
-  }
+    strict: 'filter',
+  },
 })
 export class Pokemon extends Entity {
   @property({
@@ -111,19 +111,19 @@ export class Pokemon extends Entity {
     type: 'string',
     required: false,
   })
-  'Common Capture Area'?: string
+  'Common Capture Area'?: string;
 
   @property({
     type: 'string',
     required: false,
   })
-  'Pokémon Class'?: string
+  'Pokémon Class'?: string;
 
   constructor(data?: Partial<Pokemon>) {
     super(data);
   }
 }
 
-export interface PokemonRelations { }
+export interface PokemonRelations {}
 
 export type PokemonWithRelations = Pokemon & PokemonRelations;

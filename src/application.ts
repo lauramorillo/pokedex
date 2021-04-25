@@ -4,7 +4,7 @@ import {RepositoryMixin, SchemaMigrationOptions} from '@loopback/repository';
 import {RestApplication} from '@loopback/rest';
 import {
   RestExplorerBindings,
-  RestExplorerComponent
+  RestExplorerComponent,
 } from '@loopback/rest-explorer';
 import {ServiceMixin} from '@loopback/service-proxy';
 import {Pokemon} from './models';
@@ -42,10 +42,10 @@ export class PokedexApplication extends BootMixin(
     await super.migrateSchema(options);
 
     const pokemonRepo = await this.getRepository(PokemonRepository);
-    const pokemonCount = await pokemonRepo.count()
+    const pokemonCount = await pokemonRepo.count();
 
     if (pokemonCount.count === 0) {
-      await pokemonRepo.createAll(POKEMON_LIST as Pokemon[])
+      await pokemonRepo.createAll(POKEMON_LIST as Pokemon[]);
     }
   }
 }
