@@ -25,4 +25,21 @@ export class PokemonController {
   async findById(@param.path.string('id') id: string): Promise<Pokemon> {
     return this.pokemonRepository.findById(id);
   }
+
+  @get('/pokemons/name/{name}', {
+    responses: {
+      '200': {
+        description: 'Get the info of a Pokémon by name',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(Pokemon, {includeRelations: true}),
+          },
+        },
+      },
+    },
+  })
+  @response(200)
+  async findByName(@param.path.string('name') name: string): Promise<Pokemon> {
+    return this.pokemonRepository.findByName(name);
+  }
 }

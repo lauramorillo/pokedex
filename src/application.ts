@@ -7,6 +7,7 @@ import {
   RestExplorerComponent,
 } from '@loopback/rest-explorer';
 import {ServiceMixin} from '@loopback/service-proxy';
+import {customErrorMiddleware} from './middleware/custom-error.middleware';
 import {Pokemon} from './models';
 import {POKEMON_LIST} from './pokemons';
 import {PokemonRepository} from './repositories';
@@ -26,6 +27,7 @@ export class PokedexApplication extends BootMixin(
       path: '/explorer',
     });
     this.component(RestExplorerComponent);
+    this.middleware(customErrorMiddleware);
 
     this.projectRoot = __dirname;
 

@@ -19,4 +19,17 @@ describe('PokemonController (integration)', () => {
       expect(pokemonReturned).to.containEql(pokemon);
     });
   });
+
+  describe('findByName()', () => {
+    it('retrieves the information of the pokemon with that name', async () => {
+      const pokemon = await givenPokemon({name: 'Charmander'});
+      const controller = new PokemonController(
+        new PokemonRepository(testPokemon),
+      );
+
+      const pokemonReturned = await controller.findByName('Charmander');
+
+      expect(pokemonReturned).to.containEql(pokemon);
+    });
+  });
 });

@@ -7,7 +7,7 @@ function getPokemonRepository() {
   return new PokemonRepository(testPokemon);
 }
 
-function givenPokemonData(data: Partial<Pokemon>) {
+export function givenPokemonData(data: Partial<Pokemon>) {
   return Object.assign(POKEMON_BASE, data);
 }
 
