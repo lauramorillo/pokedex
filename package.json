@@ -33,6 +33,7 @@
     "openapi-spec": "node ./dist/openapi-spec",
     "prestart": "yarn run rebuild",
     "start": "node -r source-map-support/register .",
+    "start:watch": "yarn run prestart && tsc-watch --target es2017 --outDir ./dist --onSuccess \"node .\"",
     "clean": "lb-clean dist *.tsbuildinfo .eslintcache",
     "rebuild": "yarn run clean && yarn run build"
   },
@@ -55,15 +56,17 @@
     "@loopback/rest": "^9.2.1",
     "@loopback/rest-explorer": "^3.2.1",
     "@loopback/service-proxy": "^3.1.1",
+    "loopback-connector-mongodb": "^5.2.3",
+    "tsc-watch": "^4.2.9",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@loopback/build": "^6.3.1",
-    "source-map-support": "^0.5.19",
+    "@loopback/eslint-config": "^10.1.1",
     "@loopback/testlab": "^3.3.1",
     "@types/node": "^10.17.56",
-    "@loopback/eslint-config": "^10.1.1",
     "eslint": "^7.23.0",
+    "source-map-support": "^0.5.19",
     "typescript": "~4.2.3"
   }
 }

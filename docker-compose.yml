@@ -1,0 +1,28 @@
+version: "2.4"
+services:
+  pokedex:
+    build:
+      context: .
+    extends:
+      file: service.yml
+      service: pokedex
+    depends_on:
+      - mongo-seed
+    command: yarn start:watch
+    volumes:
+      - ./:/home/node/app:cached
+    ports:
+      - 4000:3000
+
+  mongo:
+    image: mongo:4.0
+    volumes:
+      - ./initial-data:/initial-data:cached
+    command: mongod --smallfiles
+    ports:
+      - 27017:27017
+
+  mongo-seed:
+    build: ./mongo-seed
+    depends_on:
+      - mongo
