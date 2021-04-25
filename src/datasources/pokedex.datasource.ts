@@ -10,11 +10,12 @@ const config = {
   user: '',
   password: '',
   database: 'pokedex',
-  useNewUrlParser: true
+  useNewUrlParser: true,
 };
 
 @lifeCycleObserver('datasource')
-export class PokedexDataSource extends juggler.DataSource
+export class PokedexDataSource
+  extends juggler.DataSource
   implements LifeCycleObserver {
   static dataSourceName = 'pokedex';
   static readonly defaultConfig = config;

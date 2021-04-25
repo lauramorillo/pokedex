@@ -1,17 +1,13 @@
-import {PokedexApplication} from '../..';
 import {
+  Client,
   createRestAppClient,
   givenHttpServerConfig,
-  Client,
 } from '@loopback/testlab';
+import {PokedexApplication} from '../..';
 
 export async function setupApplication(): Promise<AppWithClient> {
   const restConfig = givenHttpServerConfig({
-    // Customize the server configuration here.
-    // Empty values (undefined, '') will be ignored by the helper.
-    //
-    // host: process.env.HOST,
-    // port: +process.env.PORT,
+    port: 3001,
   });
 
   const app = new PokedexApplication({
@@ -22,7 +18,6 @@ export async function setupApplication(): Promise<AppWithClient> {
   await app.start();
 
   const client = createRestAppClient(app);
-
   return {app, client};
 }
 

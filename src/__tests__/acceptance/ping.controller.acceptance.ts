@@ -15,7 +15,7 @@ describe('PingController', () => {
   });
 
   it('invokes GET /ping', async () => {
-    const res = await client.get('/ping?msg=world').expect(204);
-    expect(res.body).to.be.empty();
+    const res = await client.get('/ping').expect(200);
+    expect(res.text).to.be.equal('OK');
   });
 });

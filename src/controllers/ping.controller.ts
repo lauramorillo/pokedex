@@ -1,16 +1,14 @@
-import {inject} from '@loopback/core';
-import {get, Request, response, RestBindings} from '@loopback/rest';
+import {get, response} from '@loopback/rest';
 
 /**
  * A simple controller to bounce back http requests
  */
 export class PingController {
-  constructor(@inject(RestBindings.Http.REQUEST) private req: Request) {}
+  constructor() {}
 
-  // Map to `GET /ping`
   @get('/ping')
-  @response(204)
-  ping(): void {
-    return;
+  @response(200)
+  ping(): string {
+    return 'OK';
   }
 }
